@@ -1,0 +1,35 @@
+{
+  "name": "instaween-monorepo",
+  "version": "1.0.0",
+  "description": "An app build for Midudev & Cloudinary Hackathone a spookie AI creation",
+  "main": "index.js",
+  "scripts": {
+    "dev": "turbo dev",
+    "build": "turbo build",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node ./apps/api/dist/main.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/frako23/instaween-monorepo.git"
+  },
+  "keywords": [
+    "AI",
+    "react",
+    "nest",
+    "cloudinary"
+  ],
+  "author": "Francisco Orozco, Daniel Moret, Lorman Romero",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/frako23/instaween-monorepo/issues"
+  },
+  "homepage": "https://github.com/frako23/instaween-monorepo#readme",
+  "workspaces": [
+    "apps/*"
+  ],
+  "devDependencies": {
+    "turbo": "^2.1.3"
+  },
+  "packageManager": "npm@8.4.1"
+}
