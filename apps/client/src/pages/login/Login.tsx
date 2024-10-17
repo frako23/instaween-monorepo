@@ -21,7 +21,7 @@ export default function Login() {
               <div className="self-stretch text-center text-black text-2xl font-bold  py-5">
                 An Instagram Powered by Cloudfare Spooky AI Creation
               </div>
-              <div className="self-stretch  px-5 py-3 bg-black rounded-xl border border-[#e3e2e4] flex-col justify-start items-start gap-2.5 flex">
+              {/* <div className="self-stretch  px-5 py-3 bg-black rounded-xl border border-[#e3e2e4] flex-col justify-start items-start gap-2.5 flex cursor-pointer">
                 <div className="self-stretch pr-2.5 justify-start items-center gap-[18px] inline-flex">
                   <div className="grow shrink basis-0 h-[38px] pr-2.5 py-2.5 justify-start items-center gap-2.5 flex">
                     <div className="grow shrink basis-0 text-ghostGreen hover:text-sweetYellowCorn text-3xl font-semibold leading-[18px]">
@@ -32,10 +32,10 @@ export default function Login() {
                     <FacebookIcon />
                   </div>
                 </div>
-              </div>
+              </div> */}
               <div className="self-stretch  px-5 py-3 bg-black rounded-xl border border-[#e3e2e4] flex-col justify-start items-start gap-2.5 flex">
-                <div className="self-stretch pr-2.5 justify-start items-center gap-[18px] inline-flex">
-                  <div className="grow shrink basis-0 h-[38px] pr-2.5 py-2.5 justify-start items-center gap-2.5 flex">
+                <div className="self-stretch pr-2.5 justify-start items-center gap-[18px] inline-flex cursor-pointer">
+                  <div className="grow shrink basis-0 h-[38px] pr-2.5 py-2.5 justify-start items-center gap-2.5 flex ">
                     <div className="grow shrink basis-0 text-ghostGreen hover:text-sweetYellowCorn text-3xl font-semibold leading-[18px]">
                       Sign in with Google
                     </div>
@@ -61,7 +61,7 @@ export default function Login() {
                     </div>
                   </div>
                   <div className="w-6 h-6 relative">
-                    <SiGhostery className="w-6 h-6" />
+                    <SiGhostery className="w-6 h-6 text-white" />
                   </div>
                 </div>
               </a>
