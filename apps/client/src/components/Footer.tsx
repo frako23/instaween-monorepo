@@ -6,6 +6,7 @@ import { GiGraveyard } from "react-icons/gi";
 import { GiEvilBook } from "react-icons/gi";
 import { useImgActionStore } from "../store/imgActions";
 import { useLocation } from "react-router-dom";
+import { FaCameraRetro } from "react-icons/fa";
 
 const Footer = () => {
   const { pathname } = useLocation();
@@ -82,10 +83,7 @@ const Footer = () => {
       >
         <div
           className={`shrink basis-0 flex-col justify-center items-center gap-2.5 inline-flex ${
-            pathname !== "/home" &&
-            pathname !== "/find" &&
-            pathname !== "/post" &&
-            "bg-black rounded-lg"
+            pathname === "/profile" && "bg-black rounded-lg"
           }`}
         >
           <div className=" rounded-xl flex-col justify-center items-center flex">
@@ -93,9 +91,7 @@ const Footer = () => {
               <div className="w-6 h-6 relative">
                 <GiVampireDracula
                   className={`w-8 h-8 ${
-                    pathname !== "/home" &&
-                    pathname !== "/find" &&
-                    pathname !== "/post"
+                    pathname === "/profile"
                       ? "text-sweetYellowCorn"
                       : "text-black"
                   }`}
@@ -105,11 +101,7 @@ const Footer = () => {
           </div>
           <div
             className={`self-stretch text-center ${
-              pathname !== "/home" &&
-              pathname !== "/find" &&
-              pathname !== "/post"
-                ? "text-sweetYellowCorn"
-                : "text-black"
+              pathname === "/profile" ? "text-sweetYellowCorn" : "text-black"
             }  font-semibold text-xl leading-none pb-2 tracking-wide`}
           >
             Me
@@ -121,6 +113,30 @@ const Footer = () => {
         href="/post"
         className=" shrink basis-0 h-20 py-3 flex-col justify-center items-center gap-1 inline-flex"
       >
+        <div
+          className={`shrink basis-0 flex-col justify-center items-center gap-2.5 inline-flex ${
+            pathname === "/post" && "bg-black rounded-lg"
+          }`}
+        >
+          <div className=" rounded-xl flex-col justify-center items-center flex">
+            <div className="w-16 h-8 pr-2 py-1 justify-center items-center inline-flex">
+              <div className="w-6 h-6 relative">
+                <FaCameraRetro
+                  className={`w-8 h-8 ${
+                    pathname === "/post" ? "text-sweetYellowCorn" : "text-black"
+                  }`}
+                />
+              </div>
+            </div>
+          </div>
+          <div
+            className={`self-stretch text-center ${
+              pathname === "/post" ? "text-sweetYellowCorn" : "text-black"
+            }  font-semibold text-xl leading-none pb-2 tracking-wide`}
+          >
+            Post
+          </div>
+        </div>
         {/* <CldUploadWidget
           uploadPreset="upload-unsigned-images"
           onSuccess={(results) => {
@@ -151,7 +167,7 @@ const Footer = () => {
                 className="p-4 bg-ghostGreen rounded-xl border-4 border-black justify-center items-center gap-1.5 inline-flex"
                 onClick={() => open?.()}
               >
-                <BiSolidCameraPlus className="w-8 h-8 text-black" />
+                
               </button>
             );
           }}
