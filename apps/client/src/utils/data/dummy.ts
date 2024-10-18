@@ -8,9 +8,9 @@ interface DumyData {
 }
 
 export const users: DumyData[] = [
-    { userName: "PumpkinKing", id: 1, image: "https://panoramanow.com/wp-content/uploads/2019/08/adult-halloween-dance-party-indiana.jpg", likes: 10, comments: ["¡Qué miedo! 🎃", "¡Boo! 👻"] },
-    { userName: "WitchyWanda", id: 2, image: "https://th.bing.com/th/id/OIP.muK5CXO_EuIdMhF0r7g7ggHaEK?w=1200&h=674&rs=1&pid=ImgDetMain", likes: 20, comments: ["Noche de brujas, ¡qué emoción! 🧙‍♀️"] },
-    { userName: "GhostlyGabe", id: 3, image: "https://www.eventcombo.com/Images/ECImages/3d9866d5-a842-45c4-9e3f-661a0c79af11.jpg", likes: 30, comments: ["¡Espeluznante y genial! 🕸️", "¡Feliz Halloween! 🎃"] },
+    { userName: "PumpkinKing", id: 1, image: "https://res.cloudinary.com/ddsxxfyir/image/upload/e_gen_replace:from_face;to_a%20male%20frankestein%20face;preserve-geometry_true/fwoaz2xljg7rkxnwdly5?_a=DAJAUVWIZAA0", likes: 10, comments: ["¡Qué miedo! 🎃", "¡Boo! 👻"] },
+    { userName: "WitchyWanda", id: 2, image: "https://res.cloudinary.com/ddsxxfyir/image/upload/e_gen_replace:from_face;to_a%20male%20frankenstein%20face;preserve-geometry_true/yxfwutdf93mkg7nmua54?_a=DAJAUVWIZAA0", likes: 20, comments: ["Noche de brujas, ¡qué emoción! 🧙‍♀️"] },
+    { userName: "GhostlyGabe", id: 3, image: "https://res.cloudinary.com/ddsxxfyir/image/upload/e_gen_background_replace:prompt_scary%20cementery/odm8zhulxyogwbaeuhlw.jpg", likes: 30, comments: ["¡Espeluznante y genial! 🕸️", "¡Feliz Halloween! 🎃"] },
     { userName: "SpookySam", id: 4, image: "https://myareanetwork-photos.s3.amazonaws.com/editorphotos/f/30438_1539986299.jpeg", likes: 40, comments: ["¡Qué disfraz tan increíble! 🧛‍♂️", "¡Aterradoramente divertido! 👻"] },
     { userName: "VampireVlad", id: 5, image: "https://m.media-amazon.com/images/S/aplus-seller-content-images-us-east-1/A1PA6795UKMFR9/A2SYCUM3CFR0K5/f7130f15-9fe7-4920-90e0-53f36eeb4a0e._CR0,0,970,600_PT0_SX970__.jpg", likes: 50, comments: ["¡Me encanta tu look de Halloween! 🧙‍♂️", "¡Qué noche tan espeluznante! 🕷️"] },
     { userName: "ZombieZara", id: 6, image: "https://th.bing.com/th/id/OIP.aAkCvRd32nUa2Rn-_RRgLgHaE8?w=848&h=566&rs=1&pid=ImgDetMain", likes: 60, comments: ["¡Listo para la noche de brujas! 🧟‍♂️", "¡Qué foto tan espeluznante! 🎃"] },

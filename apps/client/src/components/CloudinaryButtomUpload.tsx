@@ -1,14 +1,22 @@
 import React, { useEffect, useRef, useState } from "react";
 import { CloudinaryResponse } from "../types";
 import ReactCompareImage from "react-compare-image";
-// import { Cloudinary } from "@cloudinary/url-gen/index";
-// import { Effect } from "@cloudinary/url-gen/actions";
-// import { AdvancedImage } from "@cloudinary/react";
-// import {
-//   artisticFilter,
-//   generativeReplace,
-// } from "@cloudinary/url-gen/actions/effect";
-// import { scale } from "@cloudinary/url-gen/actions/resize";
+import DownloadButton from "./DownloadButton";
+import { Background } from "@cloudinary/url-gen/qualifiers";
+
+type Background = {
+  ghost: string;
+  house: string;
+  cementery: string;
+  zombie: string;
+};
+
+const BACKGROUND: Background = {
+  ghost: "scary ghost",
+  house: "scary witched house",
+  cementery: "scary cementery",
+  zombie: "scary zombies",
+};
 
 const UploadWidget = () => {
   const cloudinaryRef = useRef();
@@ -16,7 +24,7 @@ const UploadWidget = () => {
   const [storedImg, setStoredImg] = useState<CloudinaryResponse | null>(null);
   const [from, setFrom] = useState<"face" | "background" | null>(null);
   const [to, setTo] = useState<
-    "zombie" | "ghost" | "vampire" | "monster" | null
+    "zombie" | "frankestein" | "vampire" | "werewolf" | string | null
   >(null);
   const [gender, setGender] = useState<"male" | "female" | null>(null);
   const cloudName = "ddsxxfyir";
@@ -52,45 +60,34 @@ const UploadWidget = () => {
 
   // const myImage = cld
   //   .image(storedImg?.public_id)
-  //   .effect(
-  //     generativeReplace().from("face").to("a zombie face").preserveGeometry()
-  //   );
-  // .resize(scale().width(1024))
-  // .setVersion(1688228955);
-  // myImage.effect(artisticFilter("al_dente")); // Aplica un filtro artístico
+  //   .effect(generativeBackgroundReplace().prompt(BACKGROUND.cementery)); // Aplica un filtro artístico
+
+  // const myImage = new CloudinaryImage("iojidhko2l5keo29imtd").effect(
+  //   generativeBackgroundReplace().prompt(BACKGROUND.cementery)
+  // );
 
   // console.log(myImage);
 
   return (
     <div className="w-full flex flex-col justify-center items-center">
-      <button
-        onClick={() => widgetRef.current?.open()}
-        className="md:text-6xl sm:text-4xl text-2xl bg-darkPurple  text-ghostGreen font-bold w-fit mb-4 hover:bg-black hover:text-sweetYellowCor-n py2 px-4 rounded"
-      >
-        Spookie starts HERE
-      </button>
-      {storedImg?.secure_url ? (
+      {from == null ? (
         <div
           className={`flex justify-around gap-4 ${from === "face" && "hidden"}  ${from === "background" && "hidden"}`}
         >
           <button
             onClick={() => setFrom("face")}
-            className="md:text-6xl sm:text-4xl text-2xl  bg-sweetYellowCorn  text-black font-bold w-fit hover:bg-black hover:text-sweetYellowCor-n py2 px-4 rounded"
+            className="md:text-6xl sm:text-4xl text-2xl  bg-sweetYellowCorn  text-black font-bold w-fit hover:bg-black hover:text-sweetYellowCorn py2 px-4 rounded"
           >
-            Face 💀
+            Selfie 💀
           </button>
           <button
             onClick={() => setFrom("background")}
-            className="md:text-6xl sm:text-4xl text-2xl bg-sweetYellowCorn  text-black font-bold w-fit hover:bg-black hover:text-sweetYellowCor-n py2 px-4 rounded"
+            className="md:text-6xl sm:text-4xl text-2xl bg-sweetYellowCorn  text-black font-bold w-fit hover:bg-black hover:text-sweetYellowCorn py2 px-4 rounded"
           >
             Background ⛺
           </button>
         </div>
-      ) : (
-        ""
-      )}
-
-      {from == "face" && gender === null && (
+      ) : from == "face" && gender === null ? (
         <div
           className={`flex justify-around gap-4 ${from === "face" || (from === "background" && "hidden")}`}
         >
@@ -104,38 +101,76 @@ const UploadWidget = () => {
             onClick={() => setGender("female")}
             className="md:text-6xl sm:text-4xl text-2xl bg-sweetYellowCorn  text-black font-bold w-fit hover:bg-black hover:text-sweetYellowCorn py2 px-4 rounded"
           >
-            Female
+            Female 👩
           </button>
         </div>
+      ) : (
+        <button
+          onClick={() => widgetRef.current?.open()}
+          className="md:text-6xl sm:text-4xl text-2xl bg-darkPurple  text-ghostGreen font-bold w-fit mb-4 hover:bg-black hover:text-sweetYellowCorn py2 px-4 rounded"
+        >
+          Spookie starts HERE
+        </button>
       )}
 
-      {gender !== null && (
+      {gender !== null && storedImg !== null && (
         <div
           className={`flex justify-around gap-4 ${from === "face" || (from === "background" && "hidden")}`}
         >
           <button
-            onClick={() => setTo("monster")}
+            onClick={() => setTo("werewolf")}
             className="md:text-6xl sm:text-4xl text-2xl  bg-sweetYellowCorn  text-black font-bold w-fit hover:bg-black hover:text-sweetYellowCorn py2 px-4 rounded"
           >
-            Monster 💀
+            Werewolf 🐺
           </button>
           <button
             onClick={() => setTo("zombie")}
             className="md:text-6xl sm:text-4xl text-2xl bg-sweetYellowCorn  text-black font-bold w-fit hover:bg-black hover:text-sweetYellowCorn py2 px-4 rounded"
           >
-            Zombie
+            Zombie 💀
           </button>
           <button
             onClick={() => setTo("vampire")}
             className="md:text-6xl sm:text-4xl text-2xl bg-sweetYellowCorn  text-black font-bold w-fit hover:bg-black hover:text-sweetYellowCorn py2 px-4 rounded"
           >
-            Vampire 🧛‍♀️
+            Vampire 🧛‍♂️
           </button>
           <button
-            onClick={() => setTo("ghost")}
+            onClick={() => setTo("frankenstein")}
             className="md:text-6xl sm:text-4xl text-2xl bg-sweetYellowCorn  text-black font-bold w-fit hover:bg-black hover:text-sweetYellowCorn py2 px-4 rounded"
           >
-            Ghost
+            Frankenstein 🧟‍♂️
+          </button>
+        </div>
+      )}
+
+      {from === "background" && storedImg !== null && (
+        <div
+          className={`flex justify-around gap-4 ${from !== "background" && "hidden"}`}
+        >
+          <button
+            onClick={() => setTo(BACKGROUND.ghost)}
+            className="md:text-6xl sm:text-4xl text-2xl  bg-sweetYellowCorn  text-black font-bold w-fit hover:bg-black hover:text-sweetYellowCorn py2 px-4 rounded"
+          >
+            Ghost 👻
+          </button>
+          <button
+            onClick={() => setTo(BACKGROUND.zombie)}
+            className="md:text-6xl sm:text-4xl text-2xl bg-sweetYellowCorn  text-black font-bold w-fit hover:bg-black hover:text-sweetYellowCorn py2 px-4 rounded"
+          >
+            Zombies 🧟‍♂️
+          </button>
+          <button
+            onClick={() => setTo(BACKGROUND.house)}
+            className="md:text-6xl sm:text-4xl text-2xl bg-sweetYellowCorn  text-black font-bold w-fit hover:bg-black hover:text-sweetYellowCorn py2 px-4 rounded"
+          >
+            House 🕸
+          </button>
+          <button
+            onClick={() => setTo(BACKGROUND.cementery)}
+            className="md:text-6xl sm:text-4xl text-2xl bg-sweetYellowCorn  text-black font-bold w-fit hover:bg-black hover:text-sweetYellowCorn py2 px-4 rounded"
+          >
+            Cementery ☠
           </button>
         </div>
       )}
@@ -149,14 +184,29 @@ const UploadWidget = () => {
               hover={true}
               leftImage={storedImg?.secure_url}
               rightImage={
-                to && from
-                  ? `https://res.cloudinary.com/ddsxxfyir/image/upload/e_gen_replace:from_${from};to_a%20${gender + "%20" + to}%20${from};preserve-geometry_true/${storedImg?.public_id}?_a=DAJAUVWIZAA0`
-                  : storedImg?.secure_url
+                from === "face" && gender !== null && to !== null
+                  ? `https://res.cloudinary.com/ddsxxfyir/image/upload/e_gen_replace:from_face;to_a%20${gender + "%20" + to}%20${from};preserve-geometry_true/${storedImg?.public_id}?_a=DAJAUVWIZAA0`
+                  : from === "background" && to !== null
+                    ? `https://res.cloudinary.com/ddsxxfyir/image/upload/e_gen_background_replace:prompt_${to}/${storedImg?.public_id}.jpg`
+                    : storedImg?.secure_url
               }
             />
           </div>
         )}
       </div>
+      {to !== null && from == "face" ? (
+        <DownloadButton
+          fileName="instaWEEN.jpg"
+          fileUrl={`https://res.cloudinary.com/ddsxxfyir/image/upload/e_gen_replace:from_${from};to_a%20${gender + "%20" + to}%20${from};preserve-geometry_true/${storedImg?.public_id}?_a=DAJAUVWIZAA0`}
+        />
+      ) : to !== null && from == "background" ? (
+        <DownloadButton
+          fileName="instaWEEN.jpg"
+          fileUrl={`https://res.cloudinary.com/ddsxxfyir/image/upload/e_gen_background_replace:prompt_${to}/${storedImg?.public_id}.jpg`}
+        />
+      ) : (
+        ""
+      )}
     </div>
   );
 };

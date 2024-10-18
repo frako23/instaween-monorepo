@@ -8,7 +8,7 @@ const Card = () => {
       {" "}
       {users?.map((user) => (
         <div
-          className="max-w-[555px] px-3 relative pt-1.5 pb-3 bg-[#fdfcff] border border-[#e3e2e4] flex-col justify-start items-start gap-2 inline-flex"
+          className="max-w-[555px] px-3 relative pt-1.5 pb-3 bg-darkPurple border border-darkPurple flex-col justify-start items-start gap-2 inline-flex"
           key={user.id}
         >
           <div className="w-full h-8 p-2 flex-col justify-start items-start gap-1 flex">
@@ -27,7 +27,7 @@ const Card = () => {
                   </div>
                 </div>
                 <div className="h-12 flex-col justify-center items-end gap-px inline-flex">
-                  <div className="self-stretch h-3.5 text-black text-3xl  font-medium leading-tight mb-1">
+                  <div className="self-stretch h-3.5 text-ghostGreen text-3xl  font-medium leading-tight mb-1">
                     {user.userName}
                   </div>
                 </div>
@@ -95,12 +95,14 @@ const Card = () => {
 
             <div className="h-10 justify-start items-center gap-1.5 inline-flex">
               <div className="self-stretch p-2.5 justify-start items-center gap-4 flex">
-                <div className="text-right text-black text-2xl  font-semibold leading-[18px] flex justify-between items-center gap-2">
-                  <MdHeartBroken className="w-7 h-7 text-black" /> {user.likes}
+                <div className="text-right text-ghostGreen text-2xl  font-semibold leading-[18px] flex justify-between items-center gap-2">
+                  <MdHeartBroken className="w-7 h-7 text-ghostGreen" />{" "}
+                  {user.likes}
                 </div>
 
-                <div className="text-right text-black text-2xl  font-semibold leading-[18px] flex justify-between items-center gap-2">
-                  <RiFilePaper2Line /> {user.comments.length}
+                <div className="text-right text-ghostGreen text-2xl  font-semibold leading-[18px] flex justify-between items-center gap-2">
+                  <RiFilePaper2Line className="w-7 h-7 text-ghostGreen" />{" "}
+                  {user.comments.length}
                 </div>
               </div>
             </div>
