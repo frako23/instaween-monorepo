@@ -11,11 +11,11 @@ export const initialData: SeedData = {
   post: [
     {
       description: 'Buenas vibras',
-      images: ['images.jpg'],
+      images: ['1728938094490.jpg'],
     },
     {
       description: 'Siempre Persevera',
-      images: ['descarga.jpg'],
+      images: ['images.png'],
     },
     {
       description: 'Work hard pays off',

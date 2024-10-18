@@ -5,7 +5,7 @@ import { join } from 'path';
 @Injectable()
 export class FilesService {
   getStaticProductImage(imageName: string) {
-    const path = join(__dirname, '../../static/postImages', imageName);
+    const path = join(__dirname, '../../static/post', imageName);
 
     if (!existsSync(path))
       throw new BadGatewayException(

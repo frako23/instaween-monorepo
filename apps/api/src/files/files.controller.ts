@@ -35,7 +35,7 @@ export class FilesController {
     FileInterceptor('file', {
       fileFilter: fileFilter,
       storage: diskStorage({
-        destination: './static/postImages',
+        destination: './static/posts',
         filename: fileNamer,
       }),
     }),
