@@ -6,7 +6,7 @@ import { SiGhostery } from "react-icons/si";
 
 export default function Login() {
   const { user } = useUser();
-  useRedirect('/home', true);
+  useRedirect('/home', !!user);
   return (
     <div className="p-4 h-screen flex items-center justify-center">
       <div className="flex items-center justify-center min-h-screen p-8 pb-20 sm:p-20 ">

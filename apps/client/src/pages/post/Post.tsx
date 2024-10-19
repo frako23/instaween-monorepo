@@ -4,9 +4,13 @@ import { useState } from "react";
 import { Cloudinary, CloudinaryFile } from "@cloudinary/url-gen/index";
 import { AdvancedImage } from "@cloudinary/react";
 import CloudinaryButtonUpload from "../../components/CloudinaryButtomUpload";
+import { useUser } from "../../Context/UserContext";
+import useRedirect from "../../hooks/useRedirect";
 
 // By default, the CldImage component applies auto-format and auto-quality to all delivery URLs for optimized delivery.
 const Post = () => {
+  const { user } = useUser();
+  useRedirect('/home', !user);
   const [publicId, setPublicId] = useState("");
   const cloudName = "hzxyensd5";
   const uploadPreset = "aoh4fpwm";
