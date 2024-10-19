@@ -5,3 +5,212 @@
 * {
   font-family: "Jolly Lodger", system-ui;
 }
+
+.spooky-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  font-size: 40vmin;
+  background-color: #000000;
+  width: 100%;
+}
+
+/* Ghost */
+
+.ghost {
+  position: relative;
+  overflow: hidden;
+  height: 1.3em;
+  filter: drop-shadow(0.02em 0.02em 0.02em rgba(0, 0, 0, 0.4));
+  animation: float 3s ease-in-out infinite;
+  opacity: 0.9;
+}
+
+.ghost-body {
+  width: 1em;
+  height: 1.1em;
+  border-radius: 0.5em 0.5em 0 0;
+  background-color: #fff;
+}
+
+.ghost-body::before,
+.ghost-body::after {
+  content: "";
+  position: absolute;
+  top: 0.5em;
+  width: 0.2em;
+  height: 0.2em;
+  border-radius: 50%;
+  background-color: #222;
+  transform: translate(-50%, -50%);
+}
+
+.ghost-body::before {
+  left: 30%;
+  animation: eyeLeft 4s ease-in-out infinite;
+}
+
+.ghost-body::after {
+  left: 70%;
+  animation: eyeRight 4s ease-in-out infinite;
+}
+
+.ghost-mouth {
+  position: absolute;
+  top: 0.78em;
+  left: 50%;
+  width: 0.3em;
+  height: 0.15em;
+  border-radius: 0.02em 0.02em 0.15em 0.15em;
+  background-color: #222;
+  transform: translate(-50%, -50%);
+  animation: mouth 4s ease-in-out infinite;
+}
+
+.ghost-tail {
+  position: absolute;
+  width: 0.333em;
+  height: 0.2em;
+  background-color: #fff;
+  border-radius: 0 0 0.166em 0.166em;
+  animation: tail 600ms linear infinite;
+}
+
+.ghost-tail-1 {
+  left: -0.333em;
+}
+
+.ghost-tail-2 {
+  left: 0;
+}
+
+.ghost-tail-3 {
+  left: 0.333em;
+}
+
+.ghost-tail-4 {
+  left: 0.666em;
+}
+
+/* Loading Phrase Output */
+
+.phrase-output {
+  font-family: "Creepster", cursive;
+  font-size: 0.18em;
+  color: #eee;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  text-shadow: 0.05em 0.05em 0.05em rgba(0, 0, 0, 0.4);
+  margin-top: 1em;
+}
+
+.phrase-output::after {
+  content: "";
+  position: absolute;
+  animation: dots 850ms linear infinite;
+}
+
+/* Animations */
+
+@keyframes float {
+  50% {
+    transform: translateY(0.1em);
+  }
+}
+
+@keyframes eyeLeft {
+  5%,
+  95% {
+    width: 0.2em;
+    height: 0.2em;
+    border-radius: 50%;
+  }
+
+  28%,
+  33%,
+  38% {
+    width: 0.2em;
+    height: 0.1em;
+    border-radius: 0.03em 0.03em 0.1em 0.1em;
+  }
+
+  61%,
+  66%,
+  71% {
+    width: 0.2em;
+    height: 0.2em;
+    border-radius: 0.01em 0.2em;
+  }
+}
+
+@keyframes eyeRight {
+  5%,
+  95% {
+    width: 0.2em;
+    height: 0.2em;
+    border-radius: 50%;
+  }
+
+  28%,
+  33%,
+  38% {
+    width: 0.2em;
+    height: 0.1em;
+    border-radius: 0.03em 0.03em 0.1em 0.1em;
+  }
+
+  61%,
+  66%,
+  71% {
+    width: 0.2em;
+    height: 0.2em;
+    border-radius: 0.2em 0.01em;
+  }
+}
+
+@keyframes mouth {
+  5%,
+  95% {
+    width: 0.3em;
+    height: 0.15em;
+    border-radius: 0.02em 0.02em 0.15em 0.15em;
+  }
+
+  28%,
+  33%,
+  38% {
+    width: 0.2em;
+    height: 0.2em;
+    border-radius: 0.15em 0.15em 0.05em 0.05em;
+  }
+
+  61%,
+  66%,
+  71% {
+    width: 0.4em;
+    height: 0.15em;
+    border-radius: 0.4em 0.4em 0.2em 0.2em;
+  }
+}
+
+@keyframes tail {
+  100% {
+    transform: translateX(0.333em);
+  }
+}
+
+@keyframes dots {
+  25% {
+    content: ".";
+  }
+
+  50% {
+    content: "..";
+  }
+
+  75% {
+    content: "...";
+  }
+}

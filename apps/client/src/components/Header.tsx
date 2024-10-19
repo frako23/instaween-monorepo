@@ -7,7 +7,7 @@ import { useUser } from "../Context/UserContext";
 const Header = () => {
   const { user, logout } = useUser();
   return (
-    <div className="h-20 px-2 bg-pumpkinOrange mb-[80px] justify-around items-start gap-2 inline-flex w-full fixed z-10">
+    <div className="h-20 px-2 bg-pumpkinOrange mb-[80px] justify-around items-start gap-2 inline-flex w-full fixed z-20">
       <div className=" shrink basis-0 h-20 py-4 justify-center items-center flex text-5xl text-black w-3/4 gap-4">
         <img src="/instaWEEN.png" width={48} height={48} alt="instaWEEN logo" />
         InstaWEEEN

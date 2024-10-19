@@ -23,6 +23,41 @@ const Footer = () => {
       {user ? (<NavLink to="/find" icon={<GiEvilBook />} label="Find" />) : null}
       {user ? (<NavLink to="/profile" icon={<GiVampireDracula />} label="Me" />) : null}
       {user ? (<NavLink to="/post" icon={<FaCameraRetro />} label="Post" />) : null}
+      {/* <CldUploadWidget
+          uploadPreset="upload-unsigned-images"
+          onSuccess={(results) => {
+            setUploadedImage(results.info?.url);
+            setUploadedImageId(results.info?.public_id);
+          }}
+          options={{
+            sources: ["local"],
+            multiple: false,
+            maxFiles: 1,
+            language: "en",
+            text: {
+              en: {
+                menu: {
+                  files: "👻 InstaWEEN 🎃",
+                },
+                local: {
+                  dd_title_single:
+                    "Drag and Drop your 📷 Here and watch the Spooky 👻 AI Magic 🔮",
+                },
+              },
+            },
+          }}
+        >
+          {({ open }) => {
+            return (
+              <button
+                className="p-4 bg-ghostGreen rounded-xl border-4 border-black justify-center items-center gap-1.5 inline-flex"
+                onClick={() => open?.()}
+              >
+                
+              </button>
+            );
+          }}
+        </CldUploadWidget> */}
     </div>
   );
 };

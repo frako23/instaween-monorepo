@@ -26,3 +26,10 @@ export interface CloudinaryResponse {
     display_name: string;
     access_mode: string;
 }
+
+export type BackgroundType = {
+    ghost: string;
+    house: string;
+    cementery: string;
+    zombie: string;
+};
