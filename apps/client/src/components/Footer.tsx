@@ -18,7 +18,7 @@ const Footer = () => {
   );
 
   return (
-    <div className="h-20 px-2 bg-pumpkinOrange justify-center items-start gap-2 inline-flex w-full fixed bottom-0 left-0 ">
+    <div className="h-20 px-2 bg-pumpkinOrange justify-center items-start gap-2 inline-flex w-full z-20 fixed bottom-0 left-0 ">
       <NavLink to="/home" icon={<GiGraveyard />} label="Home" />
       {user ? (<NavLink to="/find" icon={<GiEvilBook />} label="Find" />) : null}
       {user ? (<NavLink to="/profile" icon={<GiVampireDracula />} label="Me" />) : null}
