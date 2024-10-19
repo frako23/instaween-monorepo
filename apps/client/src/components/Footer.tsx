@@ -16,7 +16,7 @@ const Footer = () => {
   );
 
   return (
-    <div className="h-20 px-2 bg-pumpkinOrange justify-center items-start gap-2 inline-flex w-full fixed bottom-0 left-0 ">
+    <div className="h-20 px-2 bg-pumpkinOrange justify-center items-start gap-2 inline-flex w-full z-20 fixed bottom-0 left-0 ">
       <a
         href="/home"
         className=" shrink basis-0 h-20 py-4 justify-center items-center gap-1 flex"

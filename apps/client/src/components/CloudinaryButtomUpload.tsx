@@ -1,17 +1,10 @@
 import React, { useEffect, useRef, useState } from "react";
-import { CloudinaryResponse } from "../types";
+import type { BackgroundType, CloudinaryResponse } from "../types";
 import ReactCompareImage from "react-compare-image";
 import DownloadButton from "./DownloadButton";
-import { Background } from "@cloudinary/url-gen/qualifiers";
+import { SpookyLoader } from "./SpookyLoader";
 
-type Background = {
-  ghost: string;
-  house: string;
-  cementery: string;
-  zombie: string;
-};
-
-const BACKGROUND: Background = {
+const BACKGROUND: BackgroundType = {
   ghost: "scary ghost",
   house: "scary witched house",
   cementery: "scary cementery",
@@ -29,6 +22,7 @@ const UploadWidget = () => {
   const [gender, setGender] = useState<"male" | "female" | null>(null);
   const cloudName = "ddsxxfyir";
   const uploadPreset = "upload-unsigned-images";
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     cloudinaryRef.current = window.cloudinary;
@@ -54,22 +48,24 @@ const UploadWidget = () => {
     );
   }, []);
 
-  // const cld = new Cloudinary({
-  //   cloud: { cloudName },
-  // });
+  useEffect(() => {
+    if (from && to && storedImg) {
+      setLoading(true);
+      const img = new Image();
+      img.src =
+        from === "face" && gender !== null && to !== null
+          ? `https://res.cloudinary.com/ddsxxfyir/image/upload/e_gen_replace:from_face;to_a%20${gender + "%20" + to}%20${from};preserve-geometry_true/${storedImg?.public_id}?_a=DAJAUVWIZAA0`
+          : from === "background" && to !== null
+            ? `https://res.cloudinary.com/ddsxxfyir/image/upload/e_gen_background_replace:prompt_${to}/${storedImg?.public_id}.jpg`
+            : storedImg?.secure_url;
 
-  // const myImage = cld
-  //   .image(storedImg?.public_id)
-  //   .effect(generativeBackgroundReplace().prompt(BACKGROUND.cementery)); // Aplica un filtro artístico
-
-  // const myImage = new CloudinaryImage("iojidhko2l5keo29imtd").effect(
-  //   generativeBackgroundReplace().prompt(BACKGROUND.cementery)
-  // );
-
-  // console.log(myImage);
+      img.onload = () => setLoading(false);
+    }
+  }, [from, to, gender, storedImg]);
 
   return (
     <div className="w-full flex flex-col justify-center items-center">
+      {loading && <SpookyLoader />}
       {from == null ? (
         <div
           className={`flex justify-around gap-4 ${from === "face" && "hidden"}  ${from === "background" && "hidden"}`}
