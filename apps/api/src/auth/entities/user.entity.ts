@@ -1,8 +1,17 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  BeforeInsert,
+  BeforeUpdate,
+  Column,
+  Entity,
+  OneToMany,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
+import { PaginationDto } from '../../common/dtos/pagination.dto';
+import { Post } from 'src/posts/entities';
 
 @Entity('users')
 export class User {
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn('uuid')
   id: string;
 
   @Column('text', {
@@ -12,7 +21,7 @@ export class User {
   email: string;
 
   @Column('text', {
-    nullable: false,
+    select: false,
   })
   password: string;
 
@@ -21,11 +30,27 @@ export class User {
   })
   fullName: string;
 
-  @Column('bool')
+  @Column('bool', {
+    default: true,
+  })
   isActive: boolean;
 
   @Column('text', {
     array: true,
+    default: ['user'],
   })
   role: string[];
+
+  @OneToMany(() => Post, (post) => post.user)
+  post: Post;
+
+  @BeforeInsert()
+  checkFieldsBeforeInser() {
+    this.email = this.email.toLowerCase().trim();
+  }
+
+  @BeforeUpdate()
+  checkFieldsBeforeUpdate() {
+    this.checkFieldsBeforeInser();
+  }
 }

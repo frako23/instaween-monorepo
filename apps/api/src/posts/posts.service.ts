@@ -13,6 +13,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { throwError } from 'rxjs';
 import { PaginationDto } from 'src/common/dtos/pagination.dto';
 import { validate as isUUID } from 'uuid';
+import { User } from '../auth/entities/user.entity';
 
 @Injectable()
 export class PostsService {
@@ -27,11 +28,12 @@ export class PostsService {
     private readonly dataSource: DataSource,
   ) {}
 
-  async create(createPostDto: CreatePostDto) {
+  async create(createPostDto: CreatePostDto, user: User) {
     try {
       const { images = [], ...postDetails } = createPostDto;
       const post = this.postRepository.create({
         ...postDetails,
+        user,
         images: images.map((image) =>
           this.postImageRepository.create({ url: image }),
         ),
@@ -77,7 +79,7 @@ export class PostsService {
     return post;
   }
 
-  async update(id: string, updatePostDto: UpdatePostDto) {
+  async update(id: string, updatePostDto: UpdatePostDto, user: User) {
     const { images, ...toUpload } = updatePostDto;
 
     const post = await this.postRepository.preload({
@@ -90,6 +92,7 @@ export class PostsService {
     }
 
     //Create query runner
+
     const queryRunner = this.dataSource.createQueryRunner();
     await queryRunner.connect();
     await queryRunner.startTransaction();
@@ -102,7 +105,7 @@ export class PostsService {
           this.postImageRepository.create({ url: image }),
         );
       }
-
+      post.user = user;
       await queryRunner.manager.save(post);
       await queryRunner.commitTransaction();
       await queryRunner.release();

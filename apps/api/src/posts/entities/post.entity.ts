@@ -7,6 +7,7 @@ import {
   PrimaryGeneratedColumn,
 } from 'typeorm';
 import { PostImage } from './post-image.entity';
+import { User } from 'src/auth/entities/user.entity';
 
 @Entity({ name: 'posts' })
 export class Post {
@@ -23,4 +24,7 @@ export class Post {
     eager: true,
   })
   images: PostImage[];
+
+  @ManyToOne(() => User, (user) => user.post)
+  user: User;
 }
