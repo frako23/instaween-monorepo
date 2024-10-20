@@ -8,6 +8,7 @@ import {
 } from 'typeorm';
 import { PostImage } from './post-image.entity';
 import { User } from 'src/auth/entities/user.entity';
+import { Comments } from 'src/comments/entities/comment.entity';
 
 @Entity({ name: 'posts' })
 export class Post {
@@ -27,4 +28,7 @@ export class Post {
 
   @ManyToOne(() => User, (user) => user.post)
   user: User;
+
+  @OneToMany(() => Comments, (comment) => comment.post)
+  comments: Comments;
 }

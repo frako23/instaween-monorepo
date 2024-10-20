@@ -8,6 +8,7 @@ import {
 } from 'typeorm';
 import { PaginationDto } from '../../common/dtos/pagination.dto';
 import { Post } from 'src/posts/entities';
+import { Comments } from 'src/comments/entities/comment.entity';
 
 @Entity('users')
 export class User {
@@ -43,6 +44,9 @@ export class User {
 
   @OneToMany(() => Post, (post) => post.user)
   post: Post;
+
+  @OneToMany(() => Comments, (comment) => comment.user)
+  comments: Comments;
 
   @BeforeInsert()
   checkFieldsBeforeInser() {
