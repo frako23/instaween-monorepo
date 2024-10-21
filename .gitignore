@@ -10,7 +10,7 @@ lerna-debug.log*
 /dist
 /node_modules
 /build
-/postgres
+postgres/
 
 node_modules
 dist
