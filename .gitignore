@@ -10,6 +10,7 @@ lerna-debug.log*
 /dist
 /node_modules
 /build
+postgres/
 
 node_modules
 dist
@@ -27,5 +28,4 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
-
 
