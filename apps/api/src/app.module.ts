@@ -15,7 +15,7 @@ import { CommentsModule } from './comments/comments.module';
     ConfigModule.forRoot(),
     TypeOrmModule.forRoot({
       type: 'postgres',
-      host: process.env.DB_HOST,
+      host: process.env.DATABASE_URL,
       port: +process.env.DB_PORT,
       database: process.env.DB_NAME,
       password: process.env.DB_PASSWORD,
@@ -43,4 +43,4 @@ import { CommentsModule } from './comments/comments.module';
   controllers: [],
   providers: [],
 })
-export class AppModule {}
+export class AppModule { }

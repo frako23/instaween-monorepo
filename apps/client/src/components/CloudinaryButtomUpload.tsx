@@ -12,8 +12,9 @@ const BACKGROUND: BackgroundType = {
 };
 
 const UploadWidget = () => {
-  const cloudinaryRef = useRef();
-  const widgetRef = useRef();
+  const cloudinaryRef = useRef<typeof window.cloudinary | null>(null);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const widgetRef = useRef<any>(null);
   const [storedImg, setStoredImg] = useState<CloudinaryResponse | null>(null);
   const [from, setFrom] = useState<"face" | "background" | null>(null);
   const [to, setTo] = useState<
