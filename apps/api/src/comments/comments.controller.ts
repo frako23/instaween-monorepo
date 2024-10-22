@@ -40,20 +40,26 @@ export class CommentsController {
   }
 
   @Get(':term')
-  findOne(@Param('term', ParseUUIDPipe) term: string) {
-    return this.commentsService.findOne(term);
+  findOne(@Param('term', ParseUUIDPipe) term: string, postId: string) {
+    return this.commentsService.findOne(term, postId);
   }
 
-  @Patch(':term')
+  @Get('post/:postId')
+  async findCommentsByPost(@Param('postId') postId: string) {
+    return this.commentsService.findByPostId(postId);
+  }
+
+  @Patch(':term/:postId')
   update(
     @Param('term', ParseUUIDPipe) term: string,
+    @Param('postId') postId: string,
     @Body() updateCommentDto: UpdateCommentDto,
   ) {
-    return this.commentsService.update(term, updateCommentDto);
+    return this.commentsService.update(term, postId, updateCommentDto);
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.commentsService.remove(id);
+  remove(@Param('id') id: string, postId: string) {
+    return this.commentsService.remove(id, postId);
   }
 }

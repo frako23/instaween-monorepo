@@ -60,11 +60,26 @@ export class CommentsService {
     return comment;
   }
 
-  async findOne(term: string) {
+  async findByPostId(postId: string) {
+    const post = await this.postRepository.findOneBy({ id: postId });
+
+    if (!post)
+      throw new NotFoundException(`Post with id:${postId} doesnt exist`);
+
+    const comments = await this.commentsRepository.find({
+      where: { post: { id: postId } },
+    });
+
+    if (!comments.length)
+      throw new NotFoundException(`No comments found for postId: ${postId}`);
+    return comments;
+  }
+
+  async findOne(term: string, postId: string) {
     let comment: Comments;
 
     if (isUUID(term)) {
-      comment = await this.commentsRepository.findOneBy({ id: term });
+      comment = await this.commentsRepository.findOneBy({ id: term, postId });
     }
 
     if (!comment) {
@@ -74,22 +89,25 @@ export class CommentsService {
     return comment;
   }
 
-  async update(term: string, updateCommentDto: UpdateCommentDto) {
-    await this.findOne(term);
+  async update(
+    term: string,
+    postId: string,
+    updateCommentDto: UpdateCommentDto,
+  ) {
+    const comment = await this.findOne(term, postId);
+    if (!comment) {
+      throw new BadRequestException(`Comment with id: ${term} not found`);
+    }
 
-    const comment = await this.commentsRepository.update(term, {
+    await this.commentsRepository.update(comment.id, {
       ...updateCommentDto,
     });
 
-    if (!comment) {
-      throw new BadRequestException(`Comment with term: ${term} not found`);
-    }
-
-    return { term, ...updateCommentDto };
+    return { term, postId, ...updateCommentDto };
   }
 
-  async remove(id: string) {
-    const comment = await this.findOne(id);
+  async remove(id: string, postId: string) {
+    const comment = await this.findOne(id, postId);
 
     await this.commentsRepository.remove(comment);
 
