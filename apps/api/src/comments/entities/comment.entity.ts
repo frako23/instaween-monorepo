@@ -10,6 +10,9 @@ export class Comments {
   @Column('text')
   comment: string;
 
+  @Column()
+  postId: string;
+
   @ManyToOne(() => Post, (post) => post.comments)
   post: Post;
 

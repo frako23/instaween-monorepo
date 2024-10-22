@@ -8,9 +8,7 @@ export class FilesService {
     const path = join(__dirname, '../../static/post', imageName);
 
     if (!existsSync(path))
-      throw new BadGatewayException(
-        `Not product found with image ${imageName}`,
-      );
+      throw new BadGatewayException(`Not post found with image ${imageName}`);
 
     return path;
   }
