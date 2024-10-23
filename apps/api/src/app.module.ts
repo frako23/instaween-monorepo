@@ -26,7 +26,7 @@ import { CommentsModule } from './comments/comments.module';
 
     ServeStaticModule.forRoot({
       rootPath: join(__dirname, '../..', 'client'),
-      // exclude: ['api/*'],
+      exclude: ['api/*'],
     }),
 
     PostsModule,
