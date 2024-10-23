@@ -25,7 +25,8 @@ import { CommentsModule } from './comments/comments.module';
     }),
 
     ServeStaticModule.forRoot({
-      rootPath: join(__dirname, '..', 'public'),
+      rootPath: join(__dirname, '../..', 'client'),
+      // exclude: ['api/*'],
     }),
 
     PostsModule,
@@ -43,4 +44,4 @@ import { CommentsModule } from './comments/comments.module';
   controllers: [],
   providers: [],
 })
-export class AppModule { }
+export class AppModule {}
