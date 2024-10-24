@@ -6,16 +6,20 @@ import { SeedModule } from './seed/seed.module';
 import { FilesModule } from './files/files.module';
 import { ConfigModule } from '@nestjs/config';
 import { ServeStaticModule } from '@nestjs/serve-static';
-import { join } from 'path';
+import { join, resolve } from 'path';
 import { AuthModule } from './auth/auth.module';
 import { CommentsModule } from './comments/comments.module';
 
 @Module({
   imports: [
-    ConfigModule.forRoot(),
+    ConfigModule.forRoot({
+      // envFilePath: resolve(__dirname, '../.env'), // Ruta al .env
+      // isGlobal: true,
+    }),
+
     TypeOrmModule.forRoot({
       type: 'postgres',
-      host: process.env.DATABASE_URL,
+      host: process.env.DB_HOST,
       port: +process.env.DB_PORT,
       database: process.env.DB_NAME,
       password: process.env.DB_PASSWORD,
@@ -26,7 +30,6 @@ import { CommentsModule } from './comments/comments.module';
 
     ServeStaticModule.forRoot({
       rootPath: join(__dirname, '../..', 'client'),
-      exclude: ['api/*'],
     }),
 
     PostsModule,
@@ -44,4 +47,12 @@ import { CommentsModule } from './comments/comments.module';
   controllers: [],
   providers: [],
 })
-export class AppModule {}
+export class AppModule {
+  constructor() {
+    console.log('DB_HOST:', process.env.DB_HOST);
+    console.log('DB_PORT:', process.env.DB_PORT);
+    console.log('DB_NAME:', process.env.DB_NAME);
+    console.log('DB_USERNAME:', process.env.DB_USERNAME);
+    console.log('DB_PASSWORD:', process.env.DB_PASSWORD);
+  }
+}
